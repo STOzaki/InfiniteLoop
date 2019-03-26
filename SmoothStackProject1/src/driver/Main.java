@@ -42,6 +42,11 @@ public class Main {
 			System.out.println("Goodbye!");
 			return;
 		}
+		else {
+			System.out.println("Not a valid option! Try Again.");
+			System.out.println();
+			menu();
+		}
 	}
 	
 	public static void addOperations() {
@@ -49,6 +54,7 @@ public class Main {
 		System.out.println("1 - A book");
 		System.out.println("2 - A author");
 		System.out.println("3 - A publisher");
+		System.out.println("4 - Return to Main Menu");
 		
 		selection = scan.nextInt();
 		
@@ -61,6 +67,14 @@ public class Main {
 		else if(selection == 3) {
 			PublisherService.addPublisher();
 		}
+		else if(selection == 4) {
+			menu();
+		}
+		else {
+			System.out.println("Not a valid option! Try Again.");
+			System.out.println();
+			addOperations();
+		}
 	}
 	
 	public static void findOperations() {
@@ -68,6 +82,7 @@ public class Main {
 		System.out.println("1 - A book");
 		System.out.println("2 - A author");
 		System.out.println("3 - A publisher");
+		System.out.println("4 - Return to Main Menu");
 		
 		selection = scan.nextInt();
 		
@@ -80,6 +95,14 @@ public class Main {
 		else if(selection == 3) {
 			PublisherService.getPublisher();
 		}
+		else if(selection == 4) {
+			menu();
+		}
+		else {
+			System.out.println("Not a valid option! Try Again.");
+			System.out.println();
+			findOperations();
+		}
 	}
 	
 	public static void findAllOperations() {
@@ -87,6 +110,7 @@ public class Main {
 		System.out.println("1 - Books");
 		System.out.println("2 - Authors");
 		System.out.println("3 - Publishers");
+		System.out.println("4 - Return to Main Menu");
 		
 		selection = scan.nextInt();
 		
@@ -99,6 +123,14 @@ public class Main {
 		else if(selection == 3) {
 			PublisherService.getAllPublishers();
 		}
+		else if(selection == 4) {
+			menu();
+		}
+		else {
+			System.out.println("Not a valid option! Try Again.");
+			System.out.println();
+			findAllOperations();
+		}
 	}
 	
 	public static void updateOperations() {
@@ -106,6 +138,7 @@ public class Main {
 		System.out.println("1 - A book");
 		System.out.println("2 - A author");
 		System.out.println("3 - A publisher");
+		System.out.println("4 - Return to Main Menu");
 		
 		selection = scan.nextInt();
 		
@@ -118,6 +151,14 @@ public class Main {
 		else if(selection == 3) {
 			PublisherService.updatePublisher();
 		}
+		else if(selection == 4) {
+			menu();
+		}
+		else {
+			System.out.println("Not a valid option! Try Again.");
+			System.out.println();
+			updateOperations();
+		}
 	}
 	
 	public static void deleteOperations() {
@@ -125,6 +166,7 @@ public class Main {
 		System.out.println("1 - A book");
 		System.out.println("2 - A author");
 		System.out.println("3 - A publisher");
+		System.out.println("4 - Return to Main Menu");
 		
 		selection = scan.nextInt();
 		
@@ -136,6 +178,14 @@ public class Main {
 		}
 		else if(selection == 3) {
 			PublisherService.deletePublisher();
+		}
+		else if(selection == 4) {
+			menu();
+		}
+		else {
+			System.out.println("Not a valid option! Try Again.");
+			System.out.println();
+			deleteOperations();
 		}
 	}
 	
