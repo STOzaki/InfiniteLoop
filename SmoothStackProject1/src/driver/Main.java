@@ -2,9 +2,14 @@ package driver;
 
 import java.util.Scanner;
 
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
 import services.AuthorService;
 import services.BookService;
 import services.PublisherService;
+import test.TestMenu;
 
 public class Main {
 
@@ -21,7 +26,7 @@ public class Main {
 		System.out.println("5 - Delete...");
 		System.out.println("6 - Quit");
 		
-		selection = scan.nextInt();
+		selection = getSelection(6);
 		
 		if(selection == 1) {
 			addOperations();
@@ -56,7 +61,7 @@ public class Main {
 		System.out.println("3 - A publisher");
 		System.out.println("4 - Return to Main Menu");
 		
-		selection = scan.nextInt();
+		selection = getSelection(4);
 		
 		if(selection == 1) {
 			BookService.addBook();
@@ -84,7 +89,7 @@ public class Main {
 		System.out.println("3 - A publisher");
 		System.out.println("4 - Return to Main Menu");
 		
-		selection = scan.nextInt();
+		selection = getSelection(4);
 		
 		if(selection == 1) {
 			BookService.getBook();
@@ -112,7 +117,7 @@ public class Main {
 		System.out.println("3 - Publishers");
 		System.out.println("4 - Return to Main Menu");
 		
-		selection = scan.nextInt();
+		selection = getSelection(4);
 		
 		if(selection == 1) {
 			BookService.getAllBooks();
@@ -140,7 +145,7 @@ public class Main {
 		System.out.println("3 - A publisher");
 		System.out.println("4 - Return to Main Menu");
 		
-		selection = scan.nextInt();
+		selection = getSelection(4);
 		
 		if(selection == 1) {
 			BookService.updateBook();
@@ -168,7 +173,7 @@ public class Main {
 		System.out.println("3 - A publisher");
 		System.out.println("4 - Return to Main Menu");
 		
-		selection = scan.nextInt();
+		selection = getSelection(4);
 		
 		if(selection == 1) {
 			BookService.deleteBook();
@@ -189,10 +194,31 @@ public class Main {
 		}
 	}
 	
+	//takes in the number of options available and makes sure user input is between 1-options
+	public static int getSelection(int options) {
+		int input = 0;
+		do {
+			System.out.println("Please enter a number between 1 and " + options);
+			try {
+				input = Integer.parseInt(scan.nextLine());
+			}catch(NumberFormatException e) {
+				System.out.println("INVALID INPUT! Please choose an option from the menu.");
+				input = 0;
+			}
+		}while(!(input > 0 && input <= options));
+		return input;
+	}
+	
 	public static void main(String[] args) {
-		System.out.println("Welcome to the library app!");
-		System.out.println();
-
-		menu();
+//		System.out.println("Welcome to the library app!");
+//		System.out.println();
+//
+//		menu();
+		Result result = JUnitCore.runClasses(TestMenu.class);
+		
+		for (Failure failure : result.getFailures()) {
+			System.out.println(failure.toString());
+		}
+		System.out.println(result.wasSuccessful());
 	}
 }
