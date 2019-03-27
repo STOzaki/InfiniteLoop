@@ -12,6 +12,7 @@ import daoInterface.PublisherDao;
 import driver.Main;
 import pojos.Book;
 import pojos.Publisher;
+import utils.Validate;
 
 public class PublisherService {
 	
@@ -32,7 +33,7 @@ public class PublisherService {
 	public static void addPublisher() {
 		int publisherId;
 		String publisherName, publisherAddress, publisherPhone;
-		boolean publisherExists;
+		boolean publisherExists, isValidPhoneNum;
 		
 		System.out.print("Enter publisher id: ");
 		publisherId = scan.nextInt();
@@ -54,6 +55,11 @@ public class PublisherService {
 			
 			System.out.print("Enter publisher phone xxx-xxx-xxxx: ");
 			publisherPhone = scan.nextLine();
+			isValidPhoneNum = Validate.checkValidPhoneNum(publisherPhone);
+			if(!isValidPhoneNum) {
+				System.out.println("Phone number doesn't match format xxx-xxx-xxxx! \n");
+				Main.addOperations();
+			}
 			
 			Publisher publisher = new Publisher(publisherId, publisherName, publisherAddress, publisherPhone);
 			publisherDao.addPublisher(publisher);
@@ -104,7 +110,7 @@ public class PublisherService {
 	public static void updatePublisher() {
 		int publisherId;
 		String publisherName, publisherAddress, publisherPhone;
-		boolean publisherExists;
+		boolean publisherExists, isValidPhoneNum;
 
 		System.out.print("What is the publisher id: ");
 		publisherId = scan.nextInt();
@@ -121,8 +127,13 @@ public class PublisherService {
 			System.out.print("Update publisher address to: ");
 			publisherAddress = scan.nextLine();
 			
-			System.out.print("Update publisher phone to: ");
+			System.out.print("Update publisher phone xxx-xxx-xxxx: ");
 			publisherPhone = scan.nextLine();
+			isValidPhoneNum = Validate.checkValidPhoneNum(publisherPhone);
+			if(!isValidPhoneNum) {
+				System.out.println("Phone number doesn't match format xxx-xxx-xxxx! \n");
+				Main.updateOperations();
+			}
 			
 			Publisher publisher = new Publisher(publisherId, publisherName, publisherAddress, publisherPhone);
 			publisherDao.updatePublisher(publisher);
