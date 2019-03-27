@@ -40,7 +40,7 @@ public class Main {
 		}
 		else if(selection == 6) {
 			System.out.println("Goodbye!");
-			return;
+			System.exit(0);
 		}
 		else {
 			System.out.println("Not a valid option! Try Again.");
@@ -192,7 +192,7 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("Welcome to the library app!");
 		System.out.println();
-		
+
 		menu();
 	}
 }
