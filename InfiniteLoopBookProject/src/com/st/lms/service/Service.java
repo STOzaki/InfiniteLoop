@@ -79,6 +79,19 @@ public class Service {
 		return book;
 	}
 	
+	public static boolean updateBook(int bookID, Book book) {
+		try {
+			bookdao.replace(bookID, book);
+			if(!authordao.hasAuthor(book.getAuthorID()))
+				return false;
+			if(!publisherdao.hasPublisher(book.getPublisherID()))
+				return false;
+		}catch(IOException e){
+			System.out.println("ERROR: UNABLE TO RETRIEVE BOOK FROM RECORDS!");
+		}
+		return true;
+	}
+	
 	//cmds to manipulate publisher table
 	public static void printPublishers() {
 		List<Publisher> publishers = new ArrayList<Publisher>();
@@ -130,6 +143,13 @@ public class Service {
 		return publisher;
 	}
 	
+	public static void updatePublisher(int publisherID, Publisher publisher) {
+		try {
+			publisherdao.replace(publisherID, publisher);
+		}catch(IOException e){
+			System.out.println("ERROR: UNABLE TO RETRIEVE BOOK FROM RECORDS!");
+		}
+	}
 	//cmds to manipulate author table
 	public static void printAuthors() {
 		List<Author> authors = new ArrayList<Author>();
@@ -177,5 +197,12 @@ public class Service {
 		return author;
 	}
 	
+	public static void updateAuthor(int authorID, Author author) {
+		try {
+			authordao.replace(authorID, author);
+		}catch(IOException e){
+			System.out.println("ERROR: UNABLE TO RETRIEVE BOOK FROM RECORDS!");
+		}
+	}
 	
 }
