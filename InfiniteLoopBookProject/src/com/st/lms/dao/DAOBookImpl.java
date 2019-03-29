@@ -217,28 +217,6 @@ public class DAOBookImpl implements DAOBook{
 		File newFile = new File(BookTemp);
 		newFile.renameTo(oldFile);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
 }
 	
 	
