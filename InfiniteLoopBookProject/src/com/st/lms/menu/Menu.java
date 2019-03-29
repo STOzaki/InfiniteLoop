@@ -126,6 +126,58 @@ public class Menu {
 				}
 				break;
 			case 5:
+				List<String> updates = new ArrayList<String>();
+				updates.add("1) Change book's title.");
+				updates.add("2) Change book's author.");
+				updates.add("3) Change book's publisher.");
+				updates.add("9) Go back to Book Menu.");
+				System.out.println("Please enter the id number of the book you would like to update.");
+				bookID = getValidID();
+				book = Service.getBook(bookID);
+				if(book==null)
+					System.out.println("That book does not exist in our records!");
+				else {
+					System.out.println("What would you like to change?");
+					for(String update : updates)
+						System.out.println(update);
+					int temp = getValidOption(updates.size());
+					switch(temp) {
+						case 1:
+							System.out.println("Please enter the book's new title.");
+							bookTitle = scan.nextLine();
+							book = new Book(bookTitle, bookID, book.getAuthorID(), book.getPublisherID());
+							Service.updateBook(bookID, book);
+							break;
+						case 2:
+							System.out.println("Please enter the book's new author's id number.");
+							authorID = getValidID();
+							book = new Book(book.getName(), bookID, authorID, book.getPublisherID());
+							if(!Service.updateBook(bookID, book)) {
+								System.out.println("That author does not exist in the database!");
+								System.out.println("Please enter the author's name.");
+								String authorName = scan.nextLine();
+								Service.addAuthor(authorID, authorName);
+							}
+							break;
+						case 3:
+							System.out.println("Please enter the book's new publisher's id number.");
+							publisherID = getValidID();
+							book = new Book(book.getName(), bookID, book.getAuthorID(), publisherID);
+							if(!Service.updateBook(bookID, book)) {
+								System.out.println("That publisher does not exist in the database!");
+								System.out.println("Please enter the publisher's name.");
+								String publisherName = scan.nextLine();
+								System.out.println("Please enter the publisher's address.");
+								String publisherAddr = scan.nextLine();
+								System.out.println("Please enter the publisher's phone number.");
+								long phone = Long.parseLong(getValidPhone());
+								Service.addPublisher(publisherID, publisherName, publisherAddr, phone);
+							}
+							break;
+						default:
+							break;
+					}
+				}
 				break;
 			case EXIT:
 				System.out.println("Returning to main menu...");
@@ -187,6 +239,18 @@ public class Menu {
 							+ "\nAuthor's Name: " + author.getName());
 				}
 				break;
+			case 5:
+				System.out.println("Please enter the id number of the author you would like to update.");
+				authorID = getValidID();
+				author = Service.getAuthor(authorID);
+				if(author==null)
+					System.out.println("That author does not exist in our records!");
+				else {
+						System.out.println("Please enter the author's new name.");
+						authorName = scan.nextLine();
+						author = new Author(authorName, authorID);
+						Service.updateAuthor(authorID, author);
+					}
 			case EXIT:
 				System.out.println("Returning to main menu...");
 				break;
@@ -253,6 +317,45 @@ public class Menu {
 							+ "\nPublisher's Phone: " + publisher.getPhone());
 				}
 				break;
+			case 5:
+				List<String> updates = new ArrayList<String>();
+				updates.add("1) Change publisher's name.");
+				updates.add("2) Change publisher's address.");
+				updates.add("3) Change publisher's phone number.");
+				updates.add("9) Go back to Publisher Menu.");
+				System.out.println("Please enter the id number of the publisher you would like to update.");
+				publisherID = getValidID();
+				publisher = Service.getPublisher(publisherID);
+				if(publisher==null)
+					System.out.println("That publisher does not exist in our records!");
+				else {
+					System.out.println("What would you like to change?");
+					for(String update : updates)
+						System.out.println(update);
+					int temp = getValidOption(updates.size());
+					switch(temp) {
+						case 1:
+							System.out.println("Please enter the publisher's new name.");
+							publisherName = scan.nextLine();
+							publisher = new Publisher(publisherName, publisherID, publisher.getAddr(), publisher.getPhone());
+							Service.updatePublisher(publisherID, publisher);
+							break;
+						case 2:
+							System.out.println("Please enter the publisher's new address.");
+							publisherAddr = scan.nextLine();
+							publisher = new Publisher(publisher.getName(), publisherID, publisherAddr, publisher.getPhone());
+							Service.updatePublisher(publisherID, publisher);
+							break;
+						case 3:
+							System.out.println("Please enter the publisher's new phone number.");
+							publisherPhone = Long.parseLong(getValidPhone());
+							publisher = new Publisher(publisher.getName(), publisherID, publisher.getAddr(), publisherPhone);
+							Service.updatePublisher(publisherID, publisher);
+							break;
+						default:
+							break;
+					}
+				}
 			case EXIT:
 				System.out.println("Returning to main menu...");
 				break;
@@ -301,7 +404,6 @@ public class Menu {
 	
 	private String getValidPhone() {
 		String phone = "";
-		System.out.println("Please enter the phone number.");
 		do {
 			phone = scan.nextLine();
 			try {
