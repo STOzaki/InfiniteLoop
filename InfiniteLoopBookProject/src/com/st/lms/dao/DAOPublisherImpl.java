@@ -131,19 +131,4 @@ public class DAOPublisherImpl implements DAOPublisher {
 		File newFile = new File(PublisherTemp);
 		newFile.renameTo(oldFile);
 	}
-
-	@Override
-	public void setName(int id, String name) throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setID(int oldID, int newID) throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-
 }

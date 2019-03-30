@@ -4,19 +4,13 @@ public class Publisher extends Entry {
 	private String pubAddr;
 	private long pubPhone;
 	
-	public Publisher() {
-		super();
-		pubAddr = null;
-		pubPhone = -1;
-	}
-	
-	public Publisher(String name, int id) {
-		super(name, id);
-		pubAddr = null;
-		pubPhone = -1;
-	}
-	
 	public Publisher(String name, int id, String pubAddr, long pubPhone) {
+		super(name, id);
+		this.pubAddr = pubAddr;
+		this.pubPhone = pubPhone;
+	}
+	
+	public Publisher(int id, String name, String pubAddr, long pubPhone) {
 		super(name, id);
 		this.pubAddr = pubAddr;
 		this.pubPhone = pubPhone;

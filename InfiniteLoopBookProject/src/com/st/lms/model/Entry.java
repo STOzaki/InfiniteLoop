@@ -1,15 +1,13 @@
 package com.st.lms.model;
 
+//parent class of all pojos
+//all constructors set as protected so they can only be called by children
+//basic methods shared by all pojos implemented here
 public class Entry {
 	private String name;
 	private int id;
 	
-	public Entry() { //default constructor that sets data to default until changed via set
-		name = null;
-		id = -1;
-	}
-	
-	public Entry(String name, int id) {
+	protected Entry(String name, int id) {
 		this.name = name;
 		this.id = id;
 	}
@@ -18,15 +16,7 @@ public class Entry {
 		return this.name;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
 	public int getID() {
 		return this.id;
-	}
-	
-	public void setID(int id) {
-		this.id = id;
 	}
 }

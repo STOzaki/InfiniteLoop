@@ -21,7 +21,6 @@ public class Service {
 			System.out.println(String.format("%-13s %-5s %-30s %-5s %-13s %-5s %-15s", "BookId", "|", "Title", "|", "AuthorId", "|", "PublisherId"));
 			System.out.println(String.format("%s", "--------------------------------------------------------------------------------------------"));
 			for(Book book : books) {
-//				System.out.println("Book ID:" + book.getID() + ", Book Title:" + book.getName());
 				System.out.println(String.format("%-13s %-5s %-30s %-5s %-13s %-5s %-15s", 
 						book.getID(), 
 						"|", 
@@ -101,7 +100,6 @@ public class Service {
 			System.out.println(String.format("%s", "--------------------------------------------------------------"
 					+ "--------------------------------------------------------------------------"));
 			for(Publisher publisher : publishers) {
-//				System.out.println("Publisher ID:" + publisher.getID() + ", Publisher's name:" + publisher.getName());
 				System.out.println(String.format("%-15s %-5s %-25s %-5s %-55s %-5s %-15s", 
 						publisher.getID(), 
 						"|", 
@@ -158,7 +156,6 @@ public class Service {
 			System.out.println(String.format("%-12s %-5s %-20s", "AuthorId", "|", "Name"));
 			System.out.println(String.format("%s", "----------------------------------------"));
 			for(Author author : authors) {
-				//System.out.println("Author ID:" + author.getID() + ", Author's name:" + author.getName());
 				System.out.println(String.format("%-12s %-5s %-20s", 
 						author.getID(), 
 						"|", 

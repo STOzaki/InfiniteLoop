@@ -1,12 +1,10 @@
 package com.st.lms.dao;
 
-
 import java.io.IOException;
 import java.util.List;
 import com.st.lms.model.*;
 
 public interface DAOBook extends DAOBasic {
-	
 	public List<Book> loadBooks() throws IOException; //returns a list containing all books in the database
 	public Book getBook(int id) throws IOException; //returns a book with corresponding id#. if not found, returns null
 	public void addBook(Book book) throws IOException; //appends given book to book database

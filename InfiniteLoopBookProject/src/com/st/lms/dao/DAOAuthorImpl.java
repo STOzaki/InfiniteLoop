@@ -57,29 +57,6 @@ public class DAOAuthorImpl implements DAOAuthor{
 	}
 	
 	@Override
-	public void setName(int id, String name) throws IOException {
-		FileInputStream fin = new FileInputStream(AuthorFile);
-		FileWriter fw = new FileWriter(AuthorTemp, true);
-		BufferedWriter bw = new BufferedWriter(fw);
-		PrintWriter fout = new PrintWriter(bw);
-		BufferedReader buffReader = new BufferedReader(new InputStreamReader(fin));
-		String bookLine;
-		while((bookLine = buffReader.readLine()) != null) {
-			String[] parts = bookLine.split(",");
-			if(Integer.parseInt(parts[ID]) == id) {
-				bookLine = bookLine.replace(parts[NAME], CommaEncode(name));
-			}
-			fout.println(bookLine);
-		}
-		buffReader.close();
-		fout.close();
-		File oldFile = new File(AuthorFile);
-		oldFile.delete();
-		File newFile = new File(AuthorTemp);
-		newFile.renameTo(oldFile);
-	}
-
-	@Override
 	public void replace(int id, Author author) throws IOException {
 		FileInputStream fin = new FileInputStream(AuthorFile);
 		FileWriter fw = new FileWriter(AuthorTemp, true);
@@ -104,6 +81,23 @@ public class DAOAuthorImpl implements DAOAuthor{
 	}
 	
 	@Override
+	public boolean hasAuthor(int id) throws IOException {
+		FileInputStream fin = new FileInputStream(AuthorFile);
+		BufferedReader buffReader = new BufferedReader(new InputStreamReader(fin));
+		String authorLine;
+		
+		while((authorLine = buffReader.readLine()) != null) {
+			String[] parts = authorLine.split(",");
+			if(Integer.parseInt(parts[ID]) == id) {
+				buffReader.close();
+				return true;
+			}
+		}
+		buffReader.close();
+		return false;
+	}
+	
+	@Override
 	public void delete(int id) throws IOException {
 		FileInputStream fin = new FileInputStream(AuthorFile);
 		FileWriter fw = new FileWriter(AuthorTemp, true);
@@ -124,54 +118,6 @@ public class DAOAuthorImpl implements DAOAuthor{
 		File newFile = new File(AuthorTemp);
 		newFile.renameTo(oldFile);
 	}
-
-
-	@Override
-	public void setID(int oldID, int newID) throws IOException {
-		FileInputStream fin = new FileInputStream(AuthorFile);
-		BufferedReader buffReader = new BufferedReader(new InputStreamReader(fin));
-		FileOutputStream fout = new FileOutputStream(AuthorTemp);
-		BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(fout));
-		
-		String authorLine;
-		
-		while((authorLine = buffReader.readLine()) != null) {
-			String[] parts = authorLine.split(",");
-			if(Integer.parseInt(parts[ID]) != oldID) {
-				buffWriter.append(authorLine);
-			}
-			else {
-				authorLine = authorLine.replace(parts[ID], "" + newID);
-				buffWriter.append(authorLine);
-			}
-		}
-		buffReader.close();
-		buffWriter.close();
-		File oldFile = new File(AuthorFile);
-		oldFile.delete();
-		File newFile = new File(AuthorTemp);
-		newFile.renameTo(oldFile);
-		
-	}
-
-	@Override
-	public boolean hasAuthor(int id) throws IOException {
-		FileInputStream fin = new FileInputStream(AuthorFile);
-		BufferedReader buffReader = new BufferedReader(new InputStreamReader(fin));
-		String authorLine;
-		
-		while((authorLine = buffReader.readLine()) != null) {
-			String[] parts = authorLine.split(",");
-			if(Integer.parseInt(parts[ID]) == id) {
-				buffReader.close();
-				return true;
-			}
-		}
-		buffReader.close();
-		return false;
-	}
-
-
 }
 
 	

@@ -2,20 +2,14 @@ package com.st.lms.model;
 
 public class Book extends Entry{
 	private int authorID, publisherID;
-	public Book() {
-		super();
-		authorID = -1;
-		publisherID = -1;
-	}
-	
-	public Book(String name, int id) {
-		super(name, id);
-		authorID = -1;
-		publisherID = -1;
-	}
-	
 	public Book(String name, int id, int authorID, int publisherID) {
 		super(name, id);
+		this.authorID = authorID;
+		this.publisherID = publisherID;
+	}
+	
+	public Book(int id, String name, int authorID, int publisherID) {
+		super(name,id);
 		this.authorID = authorID;
 		this.publisherID = publisherID;
 	}
